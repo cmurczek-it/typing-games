@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "type": "string",
+      "defaultValue": "typing-games",
+      "metadata": {
+        "description": "The name of the webapp"
+      },
+      "minLength": 2
+    },
+    "sku": {
+      "type": "string",
+      "defaultValue": "F1",
+      "metadata": {
+        "description": "the SKU for the AppService Plan"
+      }
+    }
+  },
+  "variables": {
+    "normalizedName": "[replace(toLower(parameters('name')), ' ', '_')]",
+    "appServicePlanName": "[concat('asp-', variables('normalizedName'), uniqueString(resourceGroup().id))]",
+    "webAppName": "[concat('wa-', variables('normalizedName'), uniqueString(resourceGroup().id))]",
+    "location": "[resourceGroup().location]"
+  },
+  "resources": [
+    {
+      "name": "[variables('appServicePlanName')]",
+      "apiVersion": "2020-06-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups', resourceGroup().id)]"
+      ],
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[variables('location')]",
+      "sku": {
+        "name": "[parameters('sku')]"
+        },
+      "kind": "linux",
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('webAppName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-06-01",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+      ],
+      "properties": {
+        "name": "[variables('webAppName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+      }
+    }
+  ]
+}
