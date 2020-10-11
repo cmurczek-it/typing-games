@@ -1,0 +1,12 @@
+{
+    "jest.pathToJest": "yarn test",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.packageManager": "yarn",
+    "prettier.printWidth": 140,
+    "prettier.singleQuote": true,
+    "git.inputValidationSubjectLength": 72,
+    "git.inputValidationLength": 1000
+}
