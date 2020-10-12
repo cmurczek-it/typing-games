@@ -50,8 +50,8 @@
     },
     "skuTier": "[variables('appServicePlanTier')[parameters('tier')].sku]",
     "skuName": "[variables('appServicePlanTier')[parameters('tier')].skuCode]",
-    "kind": "[variables('appServicePlanTier')[parameters('tier')].kind]",
-    "reserved": "[variables('appServicePlanTier')[parameters('tier').reserved]]"
+    "kind": "[variables('appServicePlanTier')[parameters('tier')].kind]"
+    // "reserved": "[variables('appServicePlanTier')[parameters('tier').reserved]]"
   },
   "resources": [
     {
@@ -69,7 +69,7 @@
         "workerSize": "0",
         "workerSizeId": "0",
         "numberOfWorkers": "1",
-        "reserved": "[variables('reserved')]"
+        "reserved": false
       }
     },
     {
