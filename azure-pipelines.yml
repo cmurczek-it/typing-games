@@ -73,4 +73,5 @@ stages:
         appType: webApp
         resourceGroupName: $(RG_NAME)
         appName: typing-games
+        package: $(Pipeline.Workspace)/**/*.zip
 
