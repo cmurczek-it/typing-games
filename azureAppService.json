@@ -20,17 +20,14 @@
   },
   "variables": {
     "normalizedName": "[replace(toLower(parameters('name')), ' ', '_')]",
-    "appServicePlanName": "[concat('asp-', variables('normalizedName'), uniqueString(resourceGroup().id))]",
-    "webAppName": "[concat('wa-', variables('normalizedName'), uniqueString(resourceGroup().id))]",
+    "appServicePlanName": "[concat('asp-', variables('normalizedName'), '-', uniqueString(resourceGroup().id))]",
+    "webAppName": "[concat('wa-', variables('normalizedName'), '-', uniqueString(resourceGroup().id))]",
     "location": "[resourceGroup().location]"
   },
   "resources": [
     {
       "name": "[variables('appServicePlanName')]",
       "apiVersion": "2020-06-01",
-      "dependsOn": [
-        "[resourceId('Microsoft.Resources/resourceGroups', resourceGroup().id)]"
-      ],
       "type": "Microsoft.Web/serverfarms",
       "location": "[variables('location')]",
       "sku": {
