@@ -10,11 +10,16 @@
       },
       "minLength": 2
     },
-    "sku": {
+    "tier": {
       "type": "string",
-      "defaultValue": "F1",
+      "allowedValues": [
+        "Free",
+        "Shared",
+        "Basic"
+      ],
+      "defaultValue": "Free",
       "metadata": {
-        "description": "the SKU for the AppService Plan"
+        "description": "the pricing tier for the AppService Plan"
       }
     }
   },
@@ -22,7 +27,31 @@
     "normalizedName": "[replace(toLower(parameters('name')), ' ', '_')]",
     "appServicePlanName": "[concat('asp-', variables('normalizedName'), '-', uniqueString(resourceGroup().id))]",
     "webAppName": "[concat('wa-', variables('normalizedName'), '-', uniqueString(resourceGroup().id))]",
-    "location": "[resourceGroup().location]"
+    "location": "[resourceGroup().location]",
+    "appServicePlanTier": {
+      "Free": {
+        "sku": "Free",
+        "skuCode": "F1",
+        "kind": "",
+        "reserved": false
+      },
+      "Shared": {
+        "sku": "Shared",
+        "skuCode": "D1",
+        "kind": "",
+        "reserved": false
+      },
+      "Basic": {
+        "sku": "Basic",
+        "skuCode": "B1",
+        "kind": "linux",
+        "reserved": true
+      }
+    },
+    "skuTier": "[variables('appServicePlanTier')[parameters('tier')].sku]",
+    "skuName": "[variables('appServicePlanTier')[parameters('tier')].skuCode]",
+    "kind": "[variables('appServicePlanTier')[parameters('tier')].kind]",
+    "reserved": "[variables('appServicePlanTier')[parameters('tier').reserved]]"
   },
   "resources": [
     {
@@ -31,10 +60,16 @@
       "type": "Microsoft.Web/serverfarms",
       "location": "[variables('location')]",
       "sku": {
-        "name": "[parameters('sku')]"
+        "Tier": "[variables('skuTier')]",
+        "Name": "[variables('skuName')]"
         },
+      "kind": "[variables('kind')]",
       "properties": {
-        "reserved": true
+        "name": "[variables('appServicePlanName')]",
+        "workerSize": "0",
+        "workerSizeId": "0",
+        "numberOfWorkers": "1",
+        "reserved": "[variables('reserved')]"
       }
     },
     {
