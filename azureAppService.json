@@ -65,7 +65,6 @@
         },
       "kind": "[variables('kind')]",
       "properties": {
-        "name": "[variables('appServicePlanName')]",
         "workerSize": "0",
         "workerSizeId": "0",
         "numberOfWorkers": "1",
@@ -81,8 +80,8 @@
         "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
       ],
       "properties": {
-        "name": "[variables('webAppName')]",
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]",
+        "name": "[variables('normalizedName')]"
       }
     }
   ]
