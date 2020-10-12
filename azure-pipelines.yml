@@ -7,59 +7,67 @@ variables:
 
 pool:
   vmImage: 'ubuntu-latest'
-jobs:
-- job: build
-  steps:
-  - task: Cache@2
-    displayName: 'cache yarn packages'
-    inputs:
-      key: 'yarn | $(Agent.OS) | yarn.lock'
-      restoreKeys: |
-        yarn | $(Agent.OS)
-      path: $(YARN_CACHE_FOLDER)
-  - script: yarn --frozen-lockfile
-    displayName: 'install dependencies'
-  - script: yarn test
-    displayName: 'run unit tests'
-  - script: yarn build --prod
-    displayName: 'build prod configuration'
-  - script: yarn release
-    displayName: 'create release'
-  - task: PublishBuildArtifacts@1
-    displayName: 'publish build artifacts'
-    inputs:
-      ArtifactName: prodBuild
-      PathtoPublish: $(Pipeline.Workspace)/dist
-      publishLocation: Container
 
-- job: provisionEnv
-  steps:
-    - task: AzureResourceManagerTemplateDeployment@3
-      displayName: 'provision environment'
+stages:
+- stage: build
+  jobs:
+  - job: build
+    steps:
+    - task: Cache@2
+      displayName: 'cache yarn packages'
       inputs:
-        deploymentName: athene-typing-games-prod
-        azureResourceManagerConnection: ARM_PayG
-        deploymentScope: Resource Group
-        resourceGroupName: $(RG_NAME)
-        location: germanywestcentral
-        deploymentMode: Incremental
-        templateLocation: Linked artifact
-        csmFile: $(Pipeline.Workspace)/azureAppService.json
+        key: 'yarn | $(Agent.OS) | yarn.lock'
+        restoreKeys: |
+          yarn | $(Agent.OS)
+        path: $(YARN_CACHE_FOLDER)
+    - script: yarn --frozen-lockfile
+      displayName: 'install dependencies'
+    - script: yarn test
+      displayName: 'run unit tests'
+    - script: yarn build --prod
+      displayName: 'build prod configuration'
+    - script: yarn release
+      displayName: 'create release'
+    - task: PublishBuildArtifacts@1
+      displayName: 'publish build artifacts'
+      inputs:
+        ArtifactName: prodBuild
+        PathtoPublish: $(Pipeline.Workspace)/dist
+        publishLocation: Container
 
-- job: deploy
-  dependsOn:
-  - build
-  - provisionEnv
-  displayName: 'deploy to environment'
-  steps:
-  - download: current
-    artifact: prodBuild
-    patterns: '**/*'
-    displayName: 'download build artifacts'
-  - task: AzureWebApp@1
-    inputs:
-      azureSubscription: ARM_PayG
-      appType: webAppLinux
-      resourceGroupName: $(RG_NAME)
-      appName: typing-games
+- stage: prod
+  dependsOn: build
+  jobs:
+  - job: provisionEnv
+    steps:
+      - download: current
+        artifact: prodBild
+        patterns: '**/*'
+        displayName: 'download build artifacts'
+      - task: AzureResourceManagerTemplateDeployment@3
+        displayName: 'provision environment'
+        inputs:
+          deploymentName: athene-typing-games-prod
+          azureResourceManagerConnection: ARM_PayG
+          deploymentScope: Resource Group
+          resourceGroupName: $(RG_NAME)
+          location: germanywestcentral
+          deploymentMode: Incremental
+          templateLocation: Linked artifact
+          csmFile: $(Pipeline.Workspace)/azureAppService.json
+
+  - job: deploy
+    dependsOn: provisionEnv
+    displayName: 'deploy to environment'
+    steps:
+    - download: current
+      artifact: prodBuild
+      patterns: '**/*'
+      displayName: 'download build artifacts'
+    - task: AzureWebApp@1
+      inputs:
+        azureSubscription: ARM_PayG
+        appType: webAppLinux
+        resourceGroupName: $(RG_NAME)
+        appName: typing-games
 
