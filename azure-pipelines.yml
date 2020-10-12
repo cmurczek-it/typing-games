@@ -41,13 +41,9 @@ stages:
   dependsOn: build
   jobs:
   - job: provisionEnv
+    displayName: 'provision environment'
     steps:
-      # - download: current
-      #   artifact: prodBuild
-      #   patterns: '**/*'
-      #   displayName: 'download build artifacts'
       - task: AzureResourceManagerTemplateDeployment@3
-        displayName: 'provision environment'
         inputs:
           deploymentName: athene-typing-games-prod
           azureResourceManagerConnection: ARM_PayG
