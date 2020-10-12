@@ -53,7 +53,6 @@
     "kind": "[variables('appServicePlanTier')[parameters('tier')].kind]",
     "stack": "node",
     "node12LTS": "12.13.0"
-    // "reserved": "[variables('appServicePlanTier')[parameters('tier').reserved]]"
   },
   "resources": [
     {
