@@ -34,7 +34,7 @@ stages:
       displayName: 'publish build artifacts'
       inputs:
         ArtifactName: prodBuild
-        PathtoPublish: $(Pipeline.Workspace)/dist
+        PathtoPublish: ./dist
         publishLocation: Container
 
 - stage: prod
