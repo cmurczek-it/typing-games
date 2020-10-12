@@ -15,7 +15,7 @@
       },
       "root": "projects/shell",
       "sourceRoot": "projects/shell/src",
-      "prefix": "app",
+      "prefix": "tyg",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
