@@ -50,7 +50,9 @@
     },
     "skuTier": "[variables('appServicePlanTier')[parameters('tier')].sku]",
     "skuName": "[variables('appServicePlanTier')[parameters('tier')].skuCode]",
-    "kind": "[variables('appServicePlanTier')[parameters('tier')].kind]"
+    "kind": "[variables('appServicePlanTier')[parameters('tier')].kind]",
+    "stack": "node",
+    "node12LTS": "12.13.0"
     // "reserved": "[variables('appServicePlanTier')[parameters('tier').reserved]]"
   },
   "resources": [
@@ -79,9 +81,25 @@
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
       ],
+      "kind": "html",
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]",
-        "name": "[variables('normalizedName')]"
+        "name": "[variables('normalizedName')]",
+        "siteConfig": {
+          "appSettings": [
+              {
+                  "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                  "value": "[variables('node12LTS')]"
+              }
+          ],
+          "metadata": [
+            {
+              "name": "CURRENT_STACK",
+              "value": "[variables('stack')]"
+            }
+          ],
+          "nodeVersion": "[variables('node12LTS')]"
+        }
       }
     }
   ]
