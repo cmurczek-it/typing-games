@@ -56,7 +56,7 @@ stages:
           location: germanywestcentral
           deploymentMode: Incremental
           templateLocation: Linked artifact
-          csmFile: $(Pipeline.Workspace)/azureAppService.json
+          csmFile: $(Pipeline.Workspace)/dist/azureAppService.json
 
   - job: deploy
     dependsOn: provisionEnv
