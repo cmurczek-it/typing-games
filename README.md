@@ -1,5 +1,8 @@
 # TypingGames
 
+[![Build Status](https://dev.azure.com/Athene/typing-games/_apis/build/status/cmurczek.typing-games?branchName=main)](https://dev.azure.com/Athene/typing-games/_build/latest?definitionId=1&branchName=main)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
 
 ## Development server
