@@ -28,6 +28,8 @@ stages:
       displayName: 'build prod configuration'
     - script: yarn release
       displayName: 'create release'
+      env:
+        GH_TOKEN: $(GH_TOKEN)
     - task: PublishBuildArtifacts@1
       displayName: 'publish build artifacts'
       inputs:
