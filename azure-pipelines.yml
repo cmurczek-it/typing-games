@@ -30,16 +30,16 @@ stages:
       displayName: 'create release'
       env:
         GH_TOKEN: $(GH_TOKEN)
-    - task: ArchiveFiles@1
-      inputs:
-        RootFolder: ./dist/shell
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildNumber).zip
-        archiveType: 'default'
+    # - task: ArchiveFiles@1
+    #   inputs:
+    #     RootFolder: ./dist/shell/
+    #     archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildNumber).zip
+    #     archiveType: 'default'
     - task: PublishBuildArtifacts@1
       displayName: 'publish build artifacts'
       inputs:
         ArtifactName: prodBuild
-        PathtoPublish: $(Build.ArtifactStagingDirectory)
+        PathtoPublish: ./dist
         publishLocation: Container
 
 - stage: prod
@@ -73,6 +73,7 @@ stages:
         appType: webApp
         resourceGroupName: $(RG_NAME)
         WebAppName: typing-games
-        package: $(Pipeline.Workspace)/**/*.zip
+        package: $(Pipeline.Workspace)/shell
         RuntimeStack: "node"
-
+        DeploymentType: webDeploy
+        RemoveAdditionalFilesFlag: true
