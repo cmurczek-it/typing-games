@@ -33,7 +33,6 @@
       "sku": {
         "name": "[parameters('sku')]"
         },
-      "kind": "linux",
       "properties": {
         "reserved": true
       }

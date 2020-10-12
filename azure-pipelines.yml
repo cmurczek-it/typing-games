@@ -65,7 +65,7 @@ stages:
     - task: AzureWebApp@1
       inputs:
         azureSubscription: ARM_PayG
-        appType: webAppLinux
+        appType: webApp
         resourceGroupName: $(RG_NAME)
         appName: typing-games
 
