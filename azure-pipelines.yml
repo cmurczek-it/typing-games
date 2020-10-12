@@ -67,11 +67,12 @@ stages:
       artifact: prodBuild
       patterns: '**/*'
       displayName: 'download build artifacts'
-    - task: AzureWebApp@1
+    - task: AzureRmWebAppDeployment@4
       inputs:
         azureSubscription: ARM_PayG
         appType: webApp
         resourceGroupName: $(RG_NAME)
-        appName: typing-games
+        WebAppName: typing-games
         package: $(Pipeline.Workspace)/**/*.zip
+        RuntimeStack: "node"
 
