@@ -43,7 +43,7 @@ stages:
   - job: provisionEnv
     steps:
       - download: current
-        artifact: prodBild
+        artifact: prodBuild
         patterns: '**/*'
         displayName: 'download build artifacts'
       - task: AzureResourceManagerTemplateDeployment@3
