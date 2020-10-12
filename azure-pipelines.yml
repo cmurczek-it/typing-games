@@ -32,7 +32,7 @@ stages:
         GH_TOKEN: $(GH_TOKEN)
     - task: ArchiveFiles@1
       inputs:
-        RootFolder: ./dist
+        RootFolder: ./dist/shell
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildNumber).zip
         archiveType: 'default'
     - task: PublishBuildArtifacts@1
