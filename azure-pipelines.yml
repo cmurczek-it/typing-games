@@ -42,10 +42,10 @@ stages:
   jobs:
   - job: provisionEnv
     steps:
-      - download: current
-        artifact: prodBuild
-        patterns: '**/*'
-        displayName: 'download build artifacts'
+      # - download: current
+      #   artifact: prodBuild
+      #   patterns: '**/*'
+      #   displayName: 'download build artifacts'
       - task: AzureResourceManagerTemplateDeployment@3
         displayName: 'provision environment'
         inputs:
@@ -56,7 +56,7 @@ stages:
           location: germanywestcentral
           deploymentMode: Incremental
           templateLocation: Linked artifact
-          csmFile: $(Pipeline.Workspace)/dist/azureAppService.json
+          csmFile: $(Build.Repository.LocalPath)/azureAppService.json
 
   - job: deploy
     dependsOn: provisionEnv
