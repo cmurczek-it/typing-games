@@ -6,32 +6,32 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "shell": {
+    "falling-letters": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/shell",
-      "sourceRoot": "projects/shell/src",
+      "root": "projects/falling-letters",
+      "sourceRoot": "projects/falling-letters/src",
       "prefix": "tyg",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/shell",
-            "index": "projects/shell/src/index.html",
-            "main": "projects/shell/src/main.ts",
-            "polyfills": "projects/shell/src/polyfills.ts",
-            "tsConfig": "projects/shell/tsconfig.app.json",
+            "outputPath": "dist/falling-letters",
+            "index": "projects/falling-letters/src/index.html",
+            "main": "projects/falling-letters/src/main.ts",
+            "polyfills": "projects/falling-letters/src/polyfills.ts",
+            "tsConfig": "projects/falling-letters/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/shell/src/favicon.ico",
-              "projects/shell/src/assets"
+              "projects/falling-letters/src/favicon.ico",
+              "projects/falling-letters/src/assets"
             ],
             "styles": [
-              "projects/shell/src/styles.scss"
+              "projects/falling-letters/src/styles.scss"
             ],
             "scripts": []
           },
@@ -39,8 +39,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/shell/src/environments/environment.ts",
-                  "with": "projects/shell/src/environments/environment.prod.ts"
+                  "replace": "projects/falling-letters/src/environments/environment.ts",
+                  "with": "projects/falling-letters/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -69,18 +69,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "shell:build"
+            "browserTarget": "falling-letters:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "shell:build:production"
+              "browserTarget": "falling-letters:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "shell:build"
+            "browserTarget": "falling-letters:build"
           }
         },
         "test": {
@@ -92,9 +92,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/shell/tsconfig.app.json",
-              "projects/shell/tsconfig.spec.json",
-              "projects/shell/e2e/tsconfig.json"
+              "projects/falling-letters/tsconfig.app.json",
+              "projects/falling-letters/tsconfig.spec.json",
+              "projects/falling-letters/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -104,16 +104,17 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/shell/e2e/protractor.conf.js",
-            "devServerTarget": "shell:serve"
+            "protractorConfig": "projects/falling-letters/e2e/protractor.conf.js",
+            "devServerTarget": "falling-letters:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "shell:serve:production"
+              "devServerTarget": "falling-letters:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "shell"
+    }
+  },
+  "defaultProject": "falling-letters"
 }

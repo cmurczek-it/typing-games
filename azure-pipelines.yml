@@ -68,7 +68,7 @@ stages:
         appType: webApp
         resourceGroupName: $(RG_NAME)
         WebAppName: typing-games
-        package: $(Pipeline.Workspace)/prodBuild/shell
+        package: $(Pipeline.Workspace)/prodBuild/falling-letters
         RuntimeStack: "node"
         DeploymentType: webDeploy
         RemoveAdditionalFilesFlag: true

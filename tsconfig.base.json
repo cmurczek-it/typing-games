@@ -15,6 +15,11 @@
     "lib": [
       "es2018",
       "dom"
-    ]
-  }
+    ],
+    "paths": {
+      "@angular/*": ["node_modules/@angular/*"],
+      "@angular-devkit/*": ["node_modules/@angular-devkit/*"],
+      "@typing-games/falling-letters": ["projects/falling-letters/src"]
+    }
+  },
 }
