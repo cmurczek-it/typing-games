@@ -1,23 +1,23 @@
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatToolbarHarness } from '@angular/material/toolbar/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { ShellComponent } from './shell.component';
 
 let loader: HarnessLoader;
-let fixture: ComponentFixture<AppComponent>;
+let fixture: ComponentFixture<ShellComponent>;
 
-describe('AppComponent', () => {
+describe('ShellComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [RouterTestingModule, NoopAnimationsModule, MatToolbarModule],
-        declarations: [AppComponent],
+        declarations: [ShellComponent],
       }).compileComponents();
-      fixture = TestBed.createComponent(AppComponent);
+      fixture = TestBed.createComponent(ShellComponent);
       loader = TestbedHarnessEnvironment.loader(fixture);
     })
   );
