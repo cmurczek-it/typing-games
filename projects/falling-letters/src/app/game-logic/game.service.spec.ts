@@ -1,10 +1,8 @@
 import { marbles } from 'rxjs-marbles';
-import { TypingGamesState } from '../++state/reducer';
 import { GameService } from './game.service';
 
 describe('FallingLetter.FacadeService', () => {
   let service: GameService;
-  const initialState: TypingGamesState = { fallingLetterState: { character: '', hits: 0, misses: 0, score: 0 } };
 
   beforeEach(() => {
     service = new GameService();
