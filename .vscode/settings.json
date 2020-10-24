@@ -8,5 +8,9 @@
     "prettier.printWidth": 140,
     "prettier.singleQuote": true,
     "git.inputValidationSubjectLength": 72,
-    "git.inputValidationLength": 1000
+    "git.inputValidationLength": 1000,
+    "vsicons.associations.files": [
+      { "icon": "ng_routing_ts", "extensions": ["falling-letters-routing.module.ts"], "filename": true, "format": "svg" }
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
