@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FallingLettersRoutingModule } from './falling-letters-routing.module';
+import { environment } from '../environments/environment';
+import { fallingLetterReducer } from './++state/reducer';
+import { FallingCharacterComponent } from './falling-character/falling-character.component';
+import { GameBoardComponent } from './game-board/game-board.component';
 import { ShellComponent } from './shell/shell.component';
 
 @NgModule({
-  declarations: [ShellComponent],
-  imports: [BrowserModule, FallingLettersRoutingModule, BrowserAnimationsModule, MatToolbarModule],
+  declarations: [ShellComponent, GameBoardComponent, FallingCharacterComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, MatToolbarModule],
   providers: [],
   bootstrap: [ShellComponent],
 })

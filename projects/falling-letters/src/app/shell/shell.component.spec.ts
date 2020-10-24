@@ -1,5 +1,6 @@
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { Component } from '@angular/core';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatToolbarHarness } from '@angular/material/toolbar/testing';
@@ -15,7 +16,7 @@ describe('ShellComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [RouterTestingModule, NoopAnimationsModule, MatToolbarModule],
-        declarations: [ShellComponent],
+        declarations: [ShellComponent, MockGameBoardComponent],
       }).compileComponents();
       fixture = TestBed.createComponent(ShellComponent);
       loader = TestbedHarnessEnvironment.loader(fixture);
@@ -28,7 +29,6 @@ describe('ShellComponent', () => {
   });
 
   it(`should have as title 'Typing Games'`, () => {
-    // const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('Typing Games');
   });
@@ -36,6 +36,9 @@ describe('ShellComponent', () => {
   it('should render title', async () => {
     const toolbarHarness = await loader.getHarness(MatToolbarHarness);
     const title = await toolbarHarness.getRowsAsText();
-    expect(title).toContain('Fallende Buchstaben');
+    expect(title).toContain('Typing Games');
   });
 });
+
+@Component({ selector: 'tyg-game-board', template: '' })
+class MockGameBoardComponent {}

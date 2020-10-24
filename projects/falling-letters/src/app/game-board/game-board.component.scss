@@ -1,0 +1,35 @@
+@import "~fontsource-press-start-2p/index.css";
+@import "~@angular/material/theming";
+
+.falling-letters {
+  font-family: "Press Start 2P";
+  height: 100%;
+  width: 100%;
+  display: flex;
+
+  .game-board {
+    flex: 1 1 320px;
+    border: solid 2px;
+    margin: 15px;
+  }
+
+  .stats {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .play {
+      font-family: "Press Start 2P";
+      background-color: map-get($mat-purple, 500);
+      color: white;
+      margin: 20px;
+      padding: 15px 30px;
+
+      &:disabled {
+        background-color: hsla(0,0%,100%,.12);
+        color: hsla(0,0%,100%,.3);
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<div class="falling-letters">
+  <svg #gameBoard class="game-board">
+    <g tyg-falling-character [positionX]="charPositionX" [positionY]="charPositionY" [character]="character" *ngIf="character"></g>
+  </svg>
+  <div class="stats">
+    <div>
+      <h1>Fallende Buchstaben</h1>
+      <p>Punkte:  {{ score }}</p>
+      <p>Zeit: {{ minutes | number:"2.0-0" }}:{{ seconds | number:"2.0-0" }}</p>
+    </div>
+    <button (click)="play()" class="play" [disabled]="playButton">Spielen</button>
+  </div>
+</div>
