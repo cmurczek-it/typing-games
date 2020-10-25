@@ -33,7 +33,8 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "projects/falling-letters/src/styles.scss"
+              "projects/falling-letters/src/styles.scss",
+              "node_modules/fontsource-press-start-2p/latin.css"
             ],
             "scripts": []
           },
