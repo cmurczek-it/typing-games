@@ -1,5 +1,5 @@
+@use '~@angular/material' as mat;
 @import "~fontsource-press-start-2p/latin.css";
-@import "~@angular/material/theming";
 
 .falling-letters {
   font-family: "Press Start 2P";
@@ -21,7 +21,7 @@
 
     .play {
       font-family: "Press Start 2P";
-      background-color: map-get($mat-purple, 500);
+      background-color: map-get(mat.$purple-palette, 500);
       color: white;
       margin: 20px;
       padding: 15px 30px;
