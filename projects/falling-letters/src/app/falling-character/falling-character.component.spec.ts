@@ -3,7 +3,6 @@ import { FallingCharacterComponent } from './falling-character.component';
 describe('FallingCharacterComponent', () => {
   it('should create', () => {
     const component = setup().default().build();
-    component.ngOnInit();
     expect(component).toBeTruthy();
   });
 });

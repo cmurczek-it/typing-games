@@ -5,12 +5,11 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './falling-character.component.html',
   styleUrls: ['./falling-character.component.scss'],
 })
-export class FallingCharacterComponent implements OnInit {
+export class FallingCharacterComponent {
   @Input() character: string;
   @Input() positionX: number;
   @Input() positionY: number;
 
   constructor() {}
 
-  ngOnInit(): void {}
 }
